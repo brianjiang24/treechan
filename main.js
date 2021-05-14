@@ -3,7 +3,7 @@ const fs = require('fs');
 const Discord = require('discord.js');
 const mongoose = require('mongoose'); 
 const Levels = require('discord-xp');
-const Action = require('../OugiBot/models/actions');
+const Action = require('./models/actions');
 const { prefix, token } = require('./config.json');
 
 //Connect to MongoDB
