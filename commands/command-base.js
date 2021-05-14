@@ -1,4 +1,4 @@
-const { prefix } = `${process.env.PREFIX}`
+const prefix = `${process.env.PREFIX}`
 const Discord = require('discord.js');
 const Embed = new Discord.MessageEmbed().setColor('#000000').setFooter('OugiBot', 'https://i.imgur.com/xfahmFj.png').setTimestamp();
 
