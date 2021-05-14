@@ -28,6 +28,14 @@ for (const file of commandFiles) {
 client.on('ready', async () => {
   console.log('The client is ready!')
 
+  client.user.setPresence({
+    status: 'online',
+    activity: {
+     type: 'PLAYING',
+     name: 'Always watching over you 👀',
+    },
+   });
+
   const baseFile = 'command-base.js'
   const commandBase = require(`./commands/${baseFile}`)
 
@@ -43,7 +51,6 @@ client.on('ready', async () => {
       }
     }
   }
-
   readCommands('commands')
 })
 
