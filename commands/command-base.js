@@ -73,6 +73,7 @@ module.exports = (client, commandOptions) => {
           
           if (content.toLowerCase().startsWith(`${command} `) || content.toLowerCase() === command) {
               for (const permission of permissions) {
+                  if(!message.guild) return;
                   if (!member.hasPermission(permission)) {
                       message.channel.send(Embed.setDescription('You do not have permission to use this command.'));
                       return
