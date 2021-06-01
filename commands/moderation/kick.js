@@ -9,7 +9,6 @@ module.exports = {
     maxArgs: null,
     permissions: 'KICK_MEMBERS',
     callback: (message, arguments, text) => {
-        
         const user = message.mentions.users.first();
         if (user) {
             const member = message.guild.member(user);

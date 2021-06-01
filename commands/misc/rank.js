@@ -8,7 +8,6 @@ module.exports = {
     minArgs: 1,
     maxArgs: 1,
     callback: async (message, arguments, text) => {
-
         const target = message.mentions.users.first();
         if (target) {
             const member = message.guild.member(target);

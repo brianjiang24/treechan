@@ -6,7 +6,6 @@ module.exports = {
     maxArgs: 0,
 	callback: async (message, arguments, text) => {    
         //If a user types +apply in a certain channel => Load questions
-      
         let msg = await message.channel.send(Embed
             .setColor('#69f385')
             .setTitle(':page_with_curl: Question 1')
