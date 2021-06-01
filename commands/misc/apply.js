@@ -11,7 +11,7 @@ module.exports = {
             .setColor('#69f385')
             .setTitle(':page_with_curl: Question 1')
             .setDescription(`**Do you agree to the rules and guidelines of ${message.guild.name}?**`)
-            .setFooter('TreeChan', '/icon.png')
+            .setFooter('TreeChan', 'https://imgur.com/a/SBB1zdl')
             .setTimestamp());
             await msg.react('👍');
             await msg.react('👎');

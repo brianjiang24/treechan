@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const Embed = new Discord.MessageEmbed().setColor('#69f385').setFooter('TreeChan', '/icon.png').setTimestamp();
+const Embed = new Discord.MessageEmbed().setColor('#69f385').setFooter('TreeChan', 'https://imgur.com/a/SBB1zdl').setTimestamp();
 module.exports = {
 	commands: 'dice',
     minArgs: 0,

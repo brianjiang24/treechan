@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const Levels = require('discord-xp');
-const Embed = new Discord.MessageEmbed().setColor('#69f385').setFooter('TreeChan', '/icon.png').setTimestamp();
+const Embed = new Discord.MessageEmbed().setColor('#69f385').setFooter('TreeChan', 'https://imgur.com/a/SBB1zdl').setTimestamp();
 
 module.exports = {
     commands: 'rank',
@@ -13,11 +13,11 @@ module.exports = {
         if (target) {
             const member = message.guild.member(target);
             if (arguments[0] = member) {
-                const user = await Levels.fetch(target.id, message.guild.id); // Selects the target from the database.
+                const user = await Levels.fetch(target.id, message.guild.id); 
                 
-                if (!user) return message.channel.send("Seems like this user has not earned any xp so far."); // If there isnt such user in the database, we send a message in general.
+                if (!user) return message.channel.send(Embed.setDescription(`**Seems like this user has not earned any xp so far.**`)); 
                 
-                message.channel.send(`> **${target.tag}** is currently level ${user.level}.`); // We show the level.
+                message.channel.send(Embed.setDescription(`**:trophy: ${target.tag} is currently level ${user.level}.**`)); 
             }
         }  
     }
