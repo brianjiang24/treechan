@@ -17,7 +17,7 @@ module.exports = {
                 
                 if (!user) return message.channel.send(Embed.setDescription(`**Seems like this user has not earned any xp so far.**`)); 
                 
-                message.channel.send(Embed.setDescription(`**:trophy: ${target.author} is currently level ${user.level}.**`)); 
+                message.channel.send(Embed.setDescription(`**:trophy: ${target} is currently level ${user.level}.**`)); 
             }
         }  
     }
