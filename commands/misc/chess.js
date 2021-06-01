@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const { Chess } = require('chess.js'); //Credits to Jeff Hlywa and 15 contributers of chess.js library. 
 const chess = new Chess();
-const Embed2 = new Discord.MessageEmbed().setColor('#000000').setFooter('OugiBot', 'https://i.imgur.com/xfahmFj.png').setTimestamp();
+const Embed2 = new Discord.MessageEmbed().setColor('#69f385').setFooter('TreeChan', '/icon.png').setTimestamp();
 
 module.exports = {
     commands: 'chess',
@@ -15,9 +15,9 @@ module.exports = {
             const Embed1 = new Discord.MessageEmbed();
 
             message.channel.send(Embed1
-                .setColor('#000000')
-                .setAuthor(`OugiBot Chess Manual ♟️`)
-                .setDescription(`Welcome to the OugiBot Chess Manual! Here you will find help on executing the commands necessary to have a successful game of chess with friends! OugiBot relies on standard algebraic notation (AN) from its users and then generate and display an image of the updated chessboard. Description of how to use AN is listed below.`)
+                .setColor('#69f385')
+                .setAuthor(`TreeChan Chess Manual ♟️`)
+                .setDescription(`Welcome to the TreeChan Chess Manual! Here you will find help on executing the commands necessary to have a successful game of chess with friends! OugiBot relies on standard algebraic notation (AN) from its users and then generate and display an image of the updated chessboard. Description of how to use AN is listed below.`)
                 .addFields(
                     { name: 'Command Examples:', value: `
                     __+move e1__ (moves the pawn to e1 square)
@@ -36,7 +36,7 @@ module.exports = {
                     { name: 'Castling', value: `**0-0** for Kingside castling 
                     **0-0-0** for Queenside castling`, inline: true },
                 )
-                .setFooter('OugiBot', 'https://i.imgur.com/xfahmFj.png')
+                .setFooter('TreeChan', '/icon.png')
                 .setTimestamp());
 
         } else if (user) {

@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const Action = require('../../models/actions');
-const Embed = new Discord.MessageEmbed().setColor('#000000').setFooter('OugiBot', 'https://i.imgur.com/xfahmFj.png').setTimestamp();
+const Embed = new Discord.MessageEmbed().setColor('#69f385').setFooter('TreeChan', '/icon.png').setTimestamp();
 
 module.exports = {
     commands: 'ban',
