@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const { Chess } = require('chess.js'); //Credits to Jeff Hlywa and 15 contributers of chess.js library. 
 const chess = new Chess();
-const Embed2 = new Discord.MessageEmbed().setColor('#69f385').setFooter('TreeChan', 'https://imgur.com/a/SBB1zdl').setTimestamp();
+const Embed2 = new Discord.MessageEmbed().setColor('#69f385').setFooter('TreeChan', 'https://i.imgur.com/l7NjjAC.png').setTimestamp();
 
 module.exports = {
     commands: 'chess',
@@ -36,7 +36,7 @@ module.exports = {
                     { name: 'Castling', value: `**0-0** for Kingside castling 
                     **0-0-0** for Queenside castling`, inline: true },
                 )
-                .setFooter('TreeChan', 'https://imgur.com/a/SBB1zdl')
+                .setFooter('TreeChan', 'https://i.imgur.com/l7NjjAC.png')
                 .setTimestamp());
 
         } else if (user) {

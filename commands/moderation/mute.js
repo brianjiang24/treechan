@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const Action = require('../../models/actions');
-const Embed = new Discord.MessageEmbed().setColor('#69f385').setFooter('TreeChan', 'https://imgur.com/a/SBB1zdl').setTimestamp();
+const Embed = new Discord.MessageEmbed().setColor('#69f385').setFooter('TreeChan', 'https://i.imgur.com/l7NjjAC.png').setTimestamp();
 
 module.exports = {
     commands: 'mute', 
@@ -66,7 +66,7 @@ module.exports = {
                     { name: 'Staff:', value: `${info[0].mod}`, inline: true },
                     { name: 'Reason:', value: `${info[0].reason}`, inline: true },
                 )
-                .setFooter(`ID: ${info[0]._id}`,'https://imgur.com/a/SBB1zdl')
+                .setFooter(`ID: ${info[0]._id}`,'https://i.imgur.com/l7NjjAC.png')
                 .setTimestamp()
             );
             
@@ -100,7 +100,7 @@ module.exports = {
                     { name: 'Reason:', value: `${info[0].reason}`, inline: true },
                     { name: 'Duration:', value: `${time} min(s)`, inline: true },
                 )
-                .setFooter(`ID: ${info[0]._id}`,'https://imgur.com/a/SBB1zdl')
+                .setFooter(`ID: ${info[0]._id}`,'https://i.imgur.com/l7NjjAC.png')
                 .setTimestamp()
             );
         }
