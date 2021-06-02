@@ -1,6 +1,6 @@
 const prefix = `${process.env.PREFIX}`
 const Discord = require('discord.js');
-const Embed = new Discord.MessageEmbed().setColor('#000000').setFooter('OugiBot', 'https://i.imgur.com/xfahmFj.png').setTimestamp();
+const Embed = new Discord.MessageEmbed().setColor('#69f385').setFooter('TreeChan', 'https://i.imgur.com/l7NjjAC.png').setTimestamp();
 
 const validatePermissions = (permissions) =>{
     const validPermissions = [
