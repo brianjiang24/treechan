@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const Embed = new Discord.MessageEmbed().setColor('#000000').setDescription(`**:coin: Your coin landed on tails!**`).setTimestamp();
+const Embed = new Discord.MessageEmbed().setColor('#69f385').setDescription(`**:coin: Your coin landed on tails!**`).setTimestamp();
 module.exports = {
 	commands: 'coinflip',
     minArgs: 0,
