@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const Action = require('../../models/actions');
-const Embed = new Discord.MessageEmbed().setColor('#69f385').setFooter('TreeChan', 'https://i.imgur.com/l7NjjAC.png').setTimestamp();
+const Log = require('../../models/logchan');
+const Embed = new Discord.MessageEmbed().setColor('#69f385').setFooter('TreeChan', 'https://i.imgur.com/l7NjjAC.png');
 
 module.exports = {
     commands: 'mute', 
@@ -10,11 +11,11 @@ module.exports = {
     permissions: 'MANAGE_MESSAGES',
     callback: async (message, arguments, text) => {
         const member = message.mentions.members.first() || message.guild.members.cache.get(arguments[0]);
-        if(!member) return message.channel.send(Embed.setDescription('Member is not found.'));
+        if(!member) return message.channel.send(Embed.setDescription('Member is not found.').setTimestamp());
         const role = message.guild.roles.cache.find(role => role.name === 'Muted');
         if(!role) {
             try {
-                message.channel.send(Embed.setDescription('Creating muted role...'));
+                message.channel.send(Embed.setDescription('Creating muted role...').setTimestamp());
 
                 let muterole = await message.guild.roles.create({
                     data: {
@@ -35,13 +36,13 @@ module.exports = {
         };
         const user = message.mentions.users.first();
     
-        if(member.roles.cache.has(role.id)) return message.channel.send(Embed.setDescription(`${user} has already been muted.`));
+        if(member.roles.cache.has(role.id)) return message.channel.send(Embed.setDescription(`${user} has already been muted.`)); //need to fix
 
         const time = arguments[1];
 
         if(!time || !isFinite(time)){ 
             await member.roles.add(role);
-            message.channel.send(Embed.setDescription(`${user} is now muted permanently.`));
+            message.channel.send(Embed.setDescription(`${user} is now muted permanently.`).setTimestamp());
 
             if(arguments[1] === undefined) reason = '-'; else reason = args.slice(1).join(' ');
 
@@ -55,11 +56,14 @@ module.exports = {
             }).save();
 
             const info = await Action.find({action: 'Mute', member: user, mod: message.author, reason, current: true}).limit(1).sort({$natural:-1});
+            const loginfo = await Log.find({server: message.guild.id}).limit(1).sort({$natural:-1});
+
+            let logid = message.guild.channels.cache.find(channel => channel.id === `${loginfo[0].logchan}`);
 
             //console.log(info[0].action);
 
-            message.channel.send(new Discord.MessageEmbed()
-                .setColor('#000000')
+            logid.send(new Discord.MessageEmbed()
+                .setColor('#69f385')
                 .setTitle(`:mute: Muted: ${info[0].member}`)
                 .addFields(
                     { name: 'Member:', value: `${info[0].member}`, inline: true },
@@ -72,7 +76,7 @@ module.exports = {
             
         } else { 
             await member.roles.add(role);
-            message.channel.send(Embed.setDescription(`${user} is now muted for ${time} min(s)`));
+            message.channel.send(Embed.setDescription(`${user} is now muted for ${time} min(s)`).setTimestamp());
             setTimeout(function(){member.roles.remove(role);}, (arguments[1] * 60000));
 
             let reason = arguments.slice(2).join(' ');
@@ -90,9 +94,12 @@ module.exports = {
             }).save();
 
             const info = await Action.find({action: 'Temp Mute', member: user, mod: message.author, reason, expires, current: true}).limit(1).sort({$natural:-1});
+            const loginfo = await Log.find({server: message.guild.id}).limit(1).sort({$natural:-1});
 
-            message.channel.send(new Discord.MessageEmbed()
-                .setColor('#000000')
+            let logid = message.guild.channels.cache.find(channel => channel.id === `${loginfo[0].logchan}`);
+
+            logid.send(new Discord.MessageEmbed()
+                .setColor('#69f385')
                 .setTitle(`:mute: Temp Muted: ${info[0].member}`)
                 .addFields(
                     { name: 'Member:', value: `${info[0].member}`, inline: true },

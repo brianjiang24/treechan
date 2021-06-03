@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
-const Embed = new Discord.MessageEmbed().setColor('#69f385').setFooter('TreeChan', 'https://i.imgur.com/l7NjjAC.png').setTimestamp();
+const Log = require('../../models/logchan');
+const Embed = new Discord.MessageEmbed().setColor('#69f385').setFooter('TreeChan', 'https://i.imgur.com/l7NjjAC.png');
 
 module.exports = {
     commands: 'setlog',
@@ -12,11 +13,16 @@ module.exports = {
 
         const channelid = arguments[0];
         
-        const channel = message.guild.channels.cache.find(chan => chan.id === channelid);
+        let logid = message.guild.channels.cache.find(chan => chan.id === channelid);
 
-        if(!channel) return message.channel.send(Embed.setDescription('Channel not found'));
+        if(!logid) return message.channel.send(Embed.setDescription('Channel is not found').setTimestamp());
 
-        return message.channel.send(Embed.setDescription(`Moderation logs will now appear in ${channel}`));
+        await new Log({
+            server: message.guild.id,
+            logchan: channelid,
+            mod: message.author
+        }).save();
 
+        return message.channel.send(Embed.setDescription(`Success! Moderation logs will now appear in ${logid}`).setTimestamp());
     }
 }

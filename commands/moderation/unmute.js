@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const Embed = new Discord.MessageEmbed().setColor('#69f385').setFooter('TreeChan', 'https://i.imgur.com/l7NjjAC.png').setTimestamp();
+const Embed = new Discord.MessageEmbed().setColor('#69f385').setFooter('TreeChan', 'https://i.imgur.com/l7NjjAC.png');
 module.exports = {
     commands: 'unmute',
     expectedArgs: '<@member>',
@@ -12,7 +12,7 @@ module.exports = {
         const role = message.guild.roles.cache.find(role => role.name === 'Muted');
         if(!role) {
             try {
-                message.channel.send(Embed.setDescription('Creating muted role...'));
+                message.channel.send(Embed.setDescription('Creating muted role...').setTimestamp());
 
                 let muterole = await message.guild.roles.create({
                     data: {
@@ -26,17 +26,17 @@ module.exports = {
                         ADD_REACTIONS: false,
                     })
                 });
-                message.channel.edit(Embed.setDescription('Muted role creation successful.'));
+                message.channel.edit(Embed.setDescription('Muted role creation successful.').setTimestamp());
             } catch (error) {
                 console.log(error);
             }
         };
         const user = message.mentions.users.first();
         if(!member.roles.cache.has(role.id)) {
-            return message.channel.send(Embed.setDescription(`${user.tag} is not muted.`));
+            return message.channel.send(Embed.setDescription(`${user.tag} is not muted.`).setTimestamp());
         } else {
             member.roles.remove(role);
-            return message.channel.send(Embed.setDescription(`${user.tag} has been unmuted.`));
+            return message.channel.send(Embed.setDescription(`${user.tag} has been unmuted.`)).setTimestamp();
         }
     }
 } 

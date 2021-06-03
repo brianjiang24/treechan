@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const Action = require('../../models/actions');
-const Embed = new Discord.MessageEmbed().setColor('#69f385').setFooter('TreeChan', 'https://i.imgur.com/l7NjjAC.png').setTimestamp();
+const Embed = new Discord.MessageEmbed().setColor('#69f385').setFooter('TreeChan', 'https://i.imgur.com/l7NjjAC.png');
 
 module.exports = {
     commands: 'kick',
@@ -14,7 +14,7 @@ module.exports = {
             const member = message.guild.member(user);
             if (arguments[0] = member) {
                 member.kick().then(async() => {
-                    message.channel.send(Embed.setDescription(`Successfully kicked ${user}`));
+                    message.channel.send(Embed.setDescription(`Successfully kicked ${user}`).setTimestamp());
 
                     if(arguments[1] === undefined) reason = '-'; else reason = arguments.slice(1).join(' ');
 
@@ -27,9 +27,12 @@ module.exports = {
                     }).save();
 
                     const info = await Action.find({action: 'Kick', member: user, mod: message.author, reason, current: true}).limit(1).sort({$natural:-1});
+                    const loginfo = await Log.find({server: message.guild.id}).limit(1).sort({$natural:-1});
+
+                    let logid = message.guild.channels.cache.find(channel => channel.id === `${loginfo[0].logchan}`);
                     
-                    message.channel.send(new Discord.MessageEmbed()
-                        .setColor('#000000')
+                    logid.send(new Discord.MessageEmbed()
+                        .setColor('#69f385')
                         .setTitle(`:boot: Kicked: ${info[0].member}`)
                         .addFields(
                             { name: 'Member:', value: `${info[0].member}`, inline: true },
@@ -41,11 +44,11 @@ module.exports = {
                     );  
                   })
                   .catch(err => {
-                    message.channel.send(Embed.setDescription(`Unable to kicked the user.`));
+                    message.channel.send(Embed.setDescription(`Unable to kicked the user.`).setTimestamp());
                     console.error(err);
                 });
             } else {
-                message.channel.send(Embed.setDescription(`User is not found anywhere on the server. Please try again.`));
+                message.channel.send(Embed.setDescription(`User is not found anywhere on the server. Please try again.`).setTimestamp());
             }
         } 
     }

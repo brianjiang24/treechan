@@ -1,6 +1,6 @@
 const prefix = `${process.env.PREFIX}`
 const Discord = require('discord.js');
-const Embed = new Discord.MessageEmbed().setColor('#69f385').setFooter('TreeChan', 'https://i.imgur.com/l7NjjAC.png').setTimestamp();
+const Embed = new Discord.MessageEmbed().setColor('#69f385').setFooter('TreeChan', 'https://i.imgur.com/l7NjjAC.png')
 
 const validatePermissions = (permissions) =>{
     const validPermissions = [
@@ -75,14 +75,14 @@ module.exports = (client, commandOptions) => {
               for (const permission of permissions) {
                   if(!message.guild) return;
                   if (!member.hasPermission(permission)) {
-                      message.channel.send(Embed.setDescription('You do not have permission to use this command.'));
+                      message.channel.send(Embed.setDescription('You do not have permission to use this command.').setTimestamp());
                       return
                     }
                 }
                 for (const requiredRole of requiredRoles) {
                     const role = guild.roles.cache.find((role) => role.name === requiredRole);
                     if (!role || !member.roles.cache.has(role.id)) {
-                        message.channel.send(Embed.setDescription(`You must have the "${requiredRole}" role to use this command.`));
+                        message.channel.send(Embed.setDescription(`You must have the "${requiredRole}" role to use this command.`).setTimestamp());
                         return
                     }
                 }
@@ -91,7 +91,7 @@ module.exports = (client, commandOptions) => {
                 arguments.shift();
                 
                 if (arguments.length < minArgs || (maxArgs !== null && arguments.length > maxArgs)) {
-                    message.channel.send(Embed.setDescription(`Incorrect syntax! Use ${prefix}${alias} ${expectedArgs}`));
+                    message.channel.send(Embed.setDescription(`Incorrect syntax! Use ${prefix}${alias} ${expectedArgs}`).setTimestamp());
                     return
                 }
                 callback(message, arguments, arguments.join(' '), client);
@@ -100,5 +100,4 @@ module.exports = (client, commandOptions) => {
         }
     })
 }
-
 

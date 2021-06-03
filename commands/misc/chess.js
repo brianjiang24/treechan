@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const { Chess } = require('chess.js'); //Credits to Jeff Hlywa and 15 contributers of chess.js library. 
 const chess = new Chess();
-const Embed2 = new Discord.MessageEmbed().setColor('#69f385').setFooter('TreeChan', 'https://i.imgur.com/l7NjjAC.png').setTimestamp();
+const Embed2 = new Discord.MessageEmbed().setColor('#69f385').setFooter('TreeChan', 'https://i.imgur.com/l7NjjAC.png')
 
 module.exports = {
     commands: 'chess',
@@ -45,7 +45,7 @@ module.exports = {
             
             if (arguments[0] = member) {
 
-                let msg = await message.channel.send(Embed2.setDescription(`${user}, ${message.author} has challenged you to a chess match. Do you accept?`));
+                let msg = await message.channel.send(Embed2.setDescription(`${user}, ${message.author} has challenged you to a chess match. Do you accept?`).setTimestamp());
 
                 await msg.react("👍");
                 await msg.react("👎");
@@ -61,7 +61,7 @@ module.exports = {
                     if (reaction.emoji.name === '👍' ) {
 
                         const startboard = chess.fen().replace(/ /g, "%20"); 
-                        message.channel.send(Embed2.setDescription(`Success!, ${message.author} You have started a chess match against ${user}`));
+                        message.channel.send(Embed2.setDescription(`Success!, ${message.author} You have started a chess match against ${user}`).setTimestamp());
                             message.channel.send(`https://chessboardimage.com/${startboard}.png`);
                             
                             const originalSender = message.author.id;
@@ -75,15 +75,15 @@ module.exports = {
                                 }
                             });
                     } else {
-                        message.channel.send(Embed2.setDescription(`${message.author}, ${user} has declined your match request.`));
+                        message.channel.send(Embed2.setDescription(`${message.author}, ${user} has declined your match request.`).setTimestamp());
                     }
                 })
                 .catch(collected => {
-                    message.channel.send(Embed2.setDescription(`Times Up!, Please react sooner next time.`));
+                    message.channel.send(Embed2.setDescription(`Times Up!, Please react sooner next time.`).setTimestamp());
                 });
             } 
         } else {
-            message.channel.send(Embed2.setDescription(`Not a valid command. Please use +chess help for additional information.`));
+            message.channel.send(Embed2.setDescription(`Not a valid command. Please use +chess help for additional information.`).setTimestamp());
         }
     }
 }
