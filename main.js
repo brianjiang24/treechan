@@ -7,7 +7,7 @@ const Action = require('./models/actions');
 // const { prefix, token, passcode} = require('./config.json');
 
 //Connect to MongoDB
-const db = `mongodb+srv://admin:${process.env.PASSCODE}.mongodb.net/discord?retryWrites=true&w=majority`;
+const db = `mongodb+srv://admin:${process.env.PASSCODE}@cluster0.823cd.mongodb.net/discord?retryWrites=true&w=majority`;
 mongoose.connect(db, {useNewUrlParser: true, useUnifiedTopology: true})
 .then((result) => console.log('Successfully connected to MongoDB'))
 .catch((err) => console.log(err)); 
