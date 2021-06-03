@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const Levels = require('discord-xp');
 const client = new Discord.Client();
-client.login('NzQ1NDk1Mzc0NTkyMjEzMTA0.Xzymqw.fZvCA6bOjImqoBZHP4tjH1E4TT4');
+client.login(process.env.TOKEN);
 const Embed = new Discord.MessageEmbed().setColor('#69f385').setFooter('TreeChan', 'https://i.imgur.com/l7NjjAC.png');
 
 module.exports = {
